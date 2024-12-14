@@ -7,42 +7,41 @@ import com.microservice.product_service.model.Product;
 import com.microservice.product_service.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import lombok.Builder;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-
 @Slf4j
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final ModelMapper modelMapper;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, ModelMapper modelMapper) {
         this.productRepository = productRepository;
+        this.modelMapper = modelMapper;
     }
+
 
     public void createProduct(ProductRequest productRequest) {
-
-//        Product product = Product.builder()
-//                .name(productRequest.getName())
-//                .description((productRequest.getDescription()))
-//                .price(productRequest.getPrice())
-//                .build();
-//
-//
-//        productRepository.save(product);
-//
-//        log.info("Product {} is saved", product.getId());
-    //log.info("checking....");
+        // using model mapper to convert product request to product
+        Product convertedProductObject = modelMapper.map(productRequest, Product.class);
+        productRepository.save(convertedProductObject);
     }
 
-    public String getAllProducts() {
+    public List<ProductResponse> getAllProducts() {
         List<Product> products = productRepository.findAll();
+        //      return products.stream().map(this::toProductResponse).toList();
+        List<ProductResponse> collect = products.stream().map(product -> modelMapper.map(product, ProductResponse.class))
+                .collect(Collectors.toList());
 
-  //      return products.stream().map(this::toProductResponse).toList();
-        return "Checking..";
+        System.out.println(collect);
+        return collect;
+
     }
 
 //    private ProductResponse toProductResponse(Product product) {
@@ -54,4 +53,5 @@ public class ProductService {
 //                .price(product.getPrice())
 //                .build();
 //    }
+
 }
