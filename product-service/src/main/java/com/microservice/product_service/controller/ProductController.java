@@ -2,10 +2,12 @@ package com.microservice.product_service.controller;
 
 import com.microservice.product_service.dto.ProductRequest;
 import com.microservice.product_service.dto.ProductResponse;
+import com.microservice.product_service.model.Product;
 import com.microservice.product_service.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,14 +26,16 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProduct(@RequestBody ProductRequest productRequest){
+    public ResponseEntity<String> createProduct(@RequestBody ProductRequest productRequest){
         productService.createProduct(productRequest);
+        return ResponseEntity.ok("Product created successfully");
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public String getAllProduct(){
-       return productService.getAllProducts();
+    public List<ProductResponse> getAllProduct(){
+
+        return productService.getAllProducts();
     }
 
 }
