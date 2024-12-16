@@ -35,6 +35,7 @@ public class ProductService {
         Product convertedProductObject = modelMapper.map(productRequest, Product.class);
         Optional<Product> existingProduct = productRepository.findByNameAndDescriptionAndPrice(convertedProductObject.getName(), convertedProductObject.getDescription(), convertedProductObject.getPrice());
 
+
         existingProduct.ifPresent(product -> {
             if(product.getId()!=null){
                 this.existingProductId = product.getId();
@@ -64,6 +65,9 @@ public class ProductService {
         return collect;
 
     }
+
+
+
 
 //    private ProductResponse toProductResponse(Product product) {
 //

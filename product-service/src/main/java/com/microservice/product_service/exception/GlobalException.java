@@ -10,7 +10,7 @@ public class GlobalException {
 
     @ExceptionHandler(InvalidHttpRequests.class)
     public ResponseEntity<ErroMsg> handleInvalidHttpRequests(InvalidHttpRequests e) {
-        ErroMsg erroMsg = new ErroMsg("Incorrect Http request","Please check the Http request");
+        ErroMsg erroMsg = new ErroMsg("Incorrect Http request    "+e.getMessage(),"Please check the Http request");
         return new ResponseEntity<>(erroMsg, HttpStatusCode.valueOf(400));
     }
 
