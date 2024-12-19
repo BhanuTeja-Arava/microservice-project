@@ -1,9 +1,11 @@
 package com.microservice.product_service.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.*;
 
 import java.math.BigDecimal;
+
 
 
 public class ProductRequest {

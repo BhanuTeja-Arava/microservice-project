@@ -1,5 +1,6 @@
 package com.microservice.product_service.dto;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.ToString;
 
 import java.math.BigDecimal;

@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/vi/product")
-
+@RequestMapping("/api/v1/product")
 public class ProductController {
 
 
@@ -24,6 +23,7 @@ public class ProductController {
         this.productService = productService;
     }
 
+    //@PostMapping( consumes = {"application/json"})
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> createProduct(@RequestBody ProductRequest productRequest){
@@ -31,6 +31,7 @@ public class ProductController {
         return ResponseEntity.ok("Product created successfully");
     }
 
+   // @GetMapping(produces = {"application/xml"})
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ProductResponse> getAllProduct(){

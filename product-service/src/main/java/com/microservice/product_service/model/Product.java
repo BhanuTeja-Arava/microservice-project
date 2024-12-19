@@ -1,10 +1,13 @@
 package com.microservice.product_service.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
+
 public class Product {
     @Id
     private String id;
@@ -12,8 +15,15 @@ public class Product {
     private String description;
     private BigDecimal price;
     private Integer quantity;
+    private Boolean isTrue;
 
+    public Boolean getTrue() {
+        return isTrue;
+    }
 
+    public void setTrue(Boolean aTrue) {
+        isTrue = aTrue;
+    }
 
     @PrePersist
     public void generateId() {
