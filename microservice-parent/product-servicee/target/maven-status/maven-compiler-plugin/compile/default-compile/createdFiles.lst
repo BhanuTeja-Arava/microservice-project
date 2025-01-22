@@ -1,0 +1,13 @@
+com\microservice\product_service\exception\InvalidHttpRequests.class
+com\microservice\product_service\configuration\config.class
+com\microservice\product_service\repository\ProductRepository.class
+com\microservice\product_service\controller\CustomRequestInceptor.class
+com\microservice\product_service\dto\ProductRequest.class
+com\microservice\product_service\exception\GlobalException.class
+com\microservice\product_service\dto\ProductResponse.class
+com\microservice\product_service\configuration\WebConfig.class
+com\microservice\product_service\service\ProductService.class
+com\microservice\product_service\model\Product.class
+com\microservice\product_service\exception\ErroMsg.class
+com\microservice\product_service\controller\ProductController.class
+com\microservice\product_service\ProductServiceApplication.class
