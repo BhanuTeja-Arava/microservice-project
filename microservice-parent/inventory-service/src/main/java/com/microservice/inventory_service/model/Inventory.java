@@ -1,9 +1,11 @@
 package com.microservice.inventory_service.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 @Entity
 @Table(name = "t_inventory")
+
 public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
