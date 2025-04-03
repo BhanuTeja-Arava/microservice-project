@@ -21,12 +21,14 @@ import java.util.UUID;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final WebClient webClient;
 
+    //    private final WebClient webClient;
+    private final WebClient.Builder webClient;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, WebClient webClient) {
+    public OrderService(OrderRepository orderRepository, WebClient.Builder webClient) {
         this.orderRepository = orderRepository;
+
         this.webClient = webClient;
     }
 
@@ -47,8 +49,9 @@ public class OrderService {
 
 
         // call inventory-service, to check the item is in stock
-        InventoryResponse[] inventoryResponsesArray = webClient.get()
-                .uri("http://localhost:8082/api/inventory",
+        InventoryResponse[] inventoryResponsesArray = webClient.build()
+                .get()
+                .uri("http://inventory-service/api/inventory",
                         uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
                 .retrieve()
                 .bodyToMono(InventoryResponse[].class)

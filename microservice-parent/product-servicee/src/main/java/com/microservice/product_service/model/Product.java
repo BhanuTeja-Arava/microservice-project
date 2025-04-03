@@ -19,8 +19,11 @@ public class Product {
     public void generateId() {
         if (this.id == null || this.id.isEmpty()) {
             this.id = "PROD-" + UUID.randomUUID().toString().replace("-", "").substring(0, 8);
+
         }
     }
+
+
 
     public String getId() {
         return id;

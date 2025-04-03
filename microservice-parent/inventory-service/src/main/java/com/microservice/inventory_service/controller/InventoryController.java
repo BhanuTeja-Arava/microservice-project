@@ -4,6 +4,7 @@ import com.microservice.inventory_service.dto.InventoryResponse;
 import com.microservice.inventory_service.model.Inventory;
 import com.microservice.inventory_service.service.InventortyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @RequestMapping("/api/inventory")
 public class InventoryController {
 
-
+    @LoadBalanced
     private final InventortyService inventortyService;
 
     @Autowired
